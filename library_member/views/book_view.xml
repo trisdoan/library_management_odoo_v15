@@ -1,0 +1,12 @@
+<odoo>
+    <record id="library_book_view_form_extend" model="ir.ui.view">
+        <field name="name">library_book.view.form.inherit.library_member</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="library_app.library_book_view_form"/>
+        <field name="arch" type="xml">
+            <field name="isbn" position="after">
+                <field name="is_available"/>
+            </field>
+        </field>
+    </record>
+</odoo>

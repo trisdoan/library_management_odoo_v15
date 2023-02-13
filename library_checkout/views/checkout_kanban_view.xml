@@ -1,0 +1,84 @@
+<odoo>
+    <record id="library_checkout_kanban"
+            model="ir.ui.view">
+        <field name="model">libray.checkout</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <!-- Field list to ensure is loaded -->
+                <field name="color"/>
+                <field name="state"/>
+                <progressbar field="kanban_state"
+                             color='{
+                             "done": "success",
+                             "blocked": "danger",
+                             "normal": "muted"
+                             }'
+                             sum_fields="num_books"
+                />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click {{!selection_mode ? 'oe_kanban_color_' +
+                        kanban_getcolor(record.color.raw_value) : ''}}">
+                            <div class="o_dropdown_kanban dropdown">
+                                <!-- Top-right drop down menu -->
+                                <a class="dropdown-toggle btn"
+                                   role="button" data-toggle="dropdown"
+                                   title="Dropdown menu" href="#">
+                                    <span class="fa fa-ellipsis-v" />
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <!-- edit menu option -->
+                                    <t t-if="widget.editable">
+                                        <a role="menuitem" type="edit"
+                                           class="dropdown-item">Edit</a>
+                                    </t>
+                                    <!-- delete menu option -->
+                                    <t t-if="widget.deletable">
+                                        <a role="menuitem" type="delete"
+                                           class="dropdown-item">Delete</a>
+                                    </t>
+                                    <!-- seperator line -->
+                                    <div role="seperator" class="dropdown-divider"/>
+                                    <!-- set as done menu option -->
+                                    <a t-if="record.state != 'done'"
+                                       role="menuitem" class="dropdown-item"
+                                       name="button_done" type="object">Set as Done</a>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_title">
+                                    <!-- title area -->
+                                    <strong><field name="name"/></strong>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <!-- other content area  -->
+                                    <div><fields name="request_date"/></div>
+                                    <div>
+                                        <field name="member_id"
+                                               widget="many2one_avatar"/>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_footer_left">
+                                        <!-- left side footer -->
+                                        <field name="priority" widget="priority"/>
+                                        <field name="activity_ids"
+                                               widget="kanban_activity"/>
+                                    </div>
+                                    <div class="oe_kanban_footer_right">
+                                        <!-- right side footer -->
+                                        <field name="kanban_state"
+                                               widget="kanban_state_selection"/>
+                                        <field name="user_id"
+                                               widget="many2one_avatar_user"/>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>

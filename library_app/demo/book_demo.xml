@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+        <record model="res.partner" id="res_partner_louis">
+            <field name="name">Louis Thao</field>
+        </record>
+
+        <record model="library.book" id="library_book_databook">
+            <field name="name">The Data Book</field>
+            <field name="author_ids"
+                   eval="[(4, ref('res_partner_louis'))]"/>
+            <field name="date_published">1932-01-01</field>
+        </record>
+    </data>
+
+    <data noupdate="0">
+        <record model="res.partner" id="res_partner_monica">
+            <field name="name">Monica</field>
+        </record>
+
+        <record model="library.book" id="library_book_program">
+            <field name="name">The Program Book</field>
+            <field name="author_ids"
+                   eval="[(4, ref('res_partner_monica'))]"/>
+            <field name="date_published">2001-01-01</field>
+        </record>
+    </data>
+</odoo>

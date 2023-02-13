@@ -1,0 +1,10 @@
+<odoo>
+    <act_window id="library_member_action"
+                name="Library Member"
+                res_model="library.member"
+                view_mode="tree,form"/>
+    <menuitem id="library_member_menu"
+              name="Members"
+              action="library_member_action"
+              parent="library_app.library_menu"/>
+</odoo>
