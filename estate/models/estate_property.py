@@ -8,7 +8,6 @@ from odoo.tools import float_compare, float_is_zero
 
 
 class EstateProperty(models.Model):
-
     # ---------------------------------------- Private Attributes ---------------------------------
 
     _name = "estate.property"
@@ -30,7 +29,8 @@ class EstateProperty(models.Model):
     name = fields.Char("Title", required=True)
     description = fields.Text("Description")
     postcode = fields.Char("Postcode")
-    date_availability = fields.Date("Available From", default=lambda self: self._default_date_availability(), copy=False)
+    date_availability = fields.Date("Available From", default=lambda self: self._default_date_availability(),
+                                    copy=False)
     expected_price = fields.Float("Expected Price", required=True)
     selling_price = fields.Float("Selling Price", copy=False, readonly=True)
     bedrooms = fields.Integer("Bedrooms", default=2)
@@ -72,6 +72,9 @@ class EstateProperty(models.Model):
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")
 
+    company_id = fields.Many2one("res.company", string="Company", required=True,
+                                 default=lambda self: self.env.user.company_id)
+
     # Computed
     total_area = fields.Integer(
         "Total Area (sqm)",
@@ -98,8 +101,9 @@ class EstateProperty(models.Model):
     def _check_price_difference(self):
         for prop in self:
             if (
-                not float_is_zero(prop.selling_price, precision_rounding=0.01)
-                and float_compare(prop.selling_price, prop.expected_price * 90.0 / 100.0, precision_rounding=0.01) < 0
+                    not float_is_zero(prop.selling_price, precision_rounding=0.01)
+                    and float_compare(prop.selling_price, prop.expected_price * 90.0 / 100.0,
+                                      precision_rounding=0.01) < 0
             ):
                 raise ValidationError(
                     "The selling price must be at least 90% of the expected price! "

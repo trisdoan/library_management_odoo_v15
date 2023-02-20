@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <record id="property1" model="estate.property">
+        <field name="name">Big Villa</field>
+        <field name="expected_price">100</field>
+        <field name="property_type_id" ref="estate.type_residential"/>
+    </record>
+
+    <record id="offer1" model="estate.property.offer">
+        <field name="partner_id" ref="base.res_partner_3"/>
+        <field name="price">1000</field>
+        <field name="validity">14</field>
+        <field name="property_id" ref="estate.property1"/>
+    </record>
+</odoo>
