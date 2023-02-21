@@ -17,6 +17,8 @@
         "views/res_users_views.xml",
         "views/estate_menus.xml",
         "data/data.xml",
+        "report/report_property_offers.xml",
+        "report/report_property_view.xml"
     ],
     "demo": [
         "demo/demo.xml",
