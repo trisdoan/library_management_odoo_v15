@@ -1,5 +1,5 @@
 from odoo import http
-from customModule.library_app.controllers.main import Books
+from odoo.addons.library_app.controllers.main import Books
 
 
 class BooksExtended(Books):
