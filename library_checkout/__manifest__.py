@@ -4,7 +4,7 @@
  'description': "Members can borrow books from the library.",
  "author": "Tris",
  "license": "LGPL-3",
- "depends": ["library_member", 'mail'],
+ "depends": ["library_member", 'mail', 'contacts'],
  "data": [
      "security/ir.model.access.csv",
      "wizard/checkout_mass_message_wizard_view.xml",
@@ -17,6 +17,6 @@
      "web.assets_backend": {
          "library_checkout/static/src/css/checkout.css",
          "library_checkout/static/src/js/checkout.js",
+         }
      }
- }
  }

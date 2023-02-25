@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Library Portal",
+    'name': "Library Website Portal",
 
 
     'description': """

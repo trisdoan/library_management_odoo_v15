@@ -3,4 +3,4 @@ library_checkout_user,Checkout User,model_library_checkout,library_app.library_g
 library_checkout_line_user,Checkout Line User,model_library_checkout_line,library_app.library_group_user,1,1,1,1
 library_checkout_stage_user,Checkout Stage User,model_library_checkout_stage,library_app.library_group_user,1,0,0,0
 library_checkout_stage_manager,Checkout Stage Manager,model_library_checkout_stage,library_app.library_group_manager,1,1,1,1
-library_checkout_massmessage_user,Checkout MassMessage User,model_library_checkout_massmessgae,library_app.library_group_user,1,1,1,1
+library_checkout_massmessage_user,Checkout MassMessage User,model_library_checkout_massmessage,library_app.library_group_user,1,1,1,1

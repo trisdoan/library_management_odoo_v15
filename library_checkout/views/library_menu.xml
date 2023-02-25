@@ -1,11 +1,11 @@
 <odoo>
     <record id="library_checkout_action" model="ir.actions.act_window">
-        <field name="name">library_checkout_action</field>
+        <field name="name">Library Checkout</field>
         <field name="res_model">library.checkout</field>
         <field name="view_mode">kanban,tree,form,calendar,graph,pivot</field>
     </record>
 
-    <menuitem id="menu_library_checkout"
+    <menuitem id="library_checkout_menu"
               name="Checkout"
               action="library_checkout_action"
               parent="library_app.library_menu"/>

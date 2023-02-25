@@ -10,10 +10,9 @@ class CustomerPortal(portal.CustomerPortal):
             values["book_checkout_count"] = count
         return values
 
-    @route(
-        ["/my/book-checkouts", "/my/book-checkouts/page/<int:page>"],
-        auth="user",
-        website=True
+    @route(["/my/book-checkouts", "/my/book-checkouts/page/<int:page>"],
+           auth="user",
+           website=True
     )
     def my_book_checkouts(self, page=1, **kwargs):
         Checkout = request.env["library.checkout"]
@@ -27,7 +26,6 @@ class CustomerPortal(portal.CustomerPortal):
             step=self._items_per_page
         )
 
-        # recordset according to pager and filter
         checkouts = Checkout.search(
             domain,
             limit=self._items_per_page,
@@ -40,21 +38,14 @@ class CustomerPortal(portal.CustomerPortal):
                 "checkouts": checkouts,
                 "page_name": "book-checkouts",
                 "default_url": "/my/book-checkouts",
-                "pager": pager_data
-            }
+                "pager": pager_data,
+                }
         )
-        return request.render(
-            "library_portal.my_book_checkouts",
-            values
-        )
+        return request.render("library_portal.my_book_checkouts",values)
 
-    @route(
-        ["/my/book-checkout/<model('library.checkout'):doc>"],
-        auth="user",
-        website=True
-    )
+    @route(["/my/book-checkout/<model('library.checkout'):doc>"],
+           auth="user",
+           website=True)
+    
     def portal_my_project(self, doc=None, **kwargs):
-        return request.render(
-            "library_portal.book_checkout",
-            {"doc": doc}
-        )
+        return request.render("library_portal.book_checkout",{"doc": doc})

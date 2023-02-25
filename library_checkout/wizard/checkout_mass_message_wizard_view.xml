@@ -24,9 +24,8 @@
         <field name="name">Send Messages</field>
         <field name="res_model">library.checkout.massmessage</field>
         <field name="view_mode">form</field>
-        <field name="binding_model_id"
-               ref="model_library_checkout"/>
-        <field name="binding_view_types">form, list</field>
+        <field name="binding_model_id" ref="model_library_checkout"/>
+        <field name="binding_view_types">form,list</field>
         <field name="target">new</field>
     </record>
 </odoo>
