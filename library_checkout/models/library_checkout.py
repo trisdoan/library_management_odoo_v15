@@ -64,24 +64,13 @@ class Checkout(models.Model):
          ("2", "Critical")],
         default="0")
 
-
     checkout_date = fields.Date(readonly=True)
     close_date = fields.Date(readonly=True)
 
     count_checkouts = fields.Integer(
         compute="_compute_count_checkouts")
 
-    def _compute_count_checkouts_DISABLED(self):
-        "Naive version, not performance optimal"
-        for checkout in self:
-            domain = [
-                ("member_id", "=", checkout.member_id.id),
-                ("state", "not in", ["done", "cancel"]),
-            ]
-            checkout.count_checkouts = self.search_count(domain)
-
     def _compute_count_checkouts(self):
-        "Performance optimized, to run a single database query"
         members = self.mapped("member_id")
         domain = [
             ("member_id", "in", members.ids),
@@ -127,7 +116,6 @@ class Checkout(models.Model):
                 self.with_context(_checkout_write=True).write(
                     {"close_date": fields.Date.today()})
         return True
-
 
     def button_done(self):
         Stage = self.env["library.checkout.stage"]

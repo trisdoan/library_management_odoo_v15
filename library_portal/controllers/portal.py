@@ -13,7 +13,7 @@ class CustomerPortal(portal.CustomerPortal):
     @route(["/my/book-checkouts", "/my/book-checkouts/page/<int:page>"],
            auth="user",
            website=True
-    )
+           )
     def my_book_checkouts(self, page=1, **kwargs):
         Checkout = request.env["library.checkout"]
         domain = []
@@ -39,13 +39,12 @@ class CustomerPortal(portal.CustomerPortal):
                 "page_name": "book-checkouts",
                 "default_url": "/my/book-checkouts",
                 "pager": pager_data,
-                }
+            }
         )
-        return request.render("library_portal.my_book_checkouts",values)
+        return request.render("library_portal.my_book_checkouts", values)
 
     @route(["/my/book-checkout/<model('library.checkout'):doc>"],
            auth="user",
            website=True)
-    
     def portal_my_project(self, doc=None, **kwargs):
-        return request.render("library_portal.book_checkout",{"doc": doc})
+        return request.render("library_portal.book_checkout", {"doc": doc})

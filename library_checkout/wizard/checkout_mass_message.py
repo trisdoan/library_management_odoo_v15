@@ -18,12 +18,10 @@ class CheckoutMassMessage(models.TransientModel):
     def default_get(self, field_names):
         defaults_dict = super().default_get(field_names)
         checkout_ids = self.env.context["active_ids"]
-        defaults_dict["checkout_ids"] = checkout_ids
+        defaults_dict["checkout_ids"] = [(6, 0, checkout_ids)]
         return defaults_dict
 
     def button_send(self):
-        import pdb
-        pdb.set_trace()
         self.ensure_one()
         if not self.checkout_ids:
             raise exceptions.UserError('No Checkouts were selected')
@@ -33,16 +31,15 @@ class CheckoutMassMessage(models.TransientModel):
             checkout.message_post(
                 body=self.message_body,
                 subject=self.message_subject,
-                subtype='mail.mt_comment')
+                subtype_xmlid='mail.mt_comment')
+            _logger.debug(
+                "Message on %d to followers: %s",
+                checkout.id,
+                checkout.message_follower_ids
+            )
         _logger.info(
             "Posted %d messages to the Checkouts: %s",
             len(self.checkout_ids),
             str(self.checkout_ids),
-        )
-
-        _logger.debug(
-            "Message on %d to followers: %s",
-            checkout.id,
-            checkout.message_follower_ids
         )
         return True

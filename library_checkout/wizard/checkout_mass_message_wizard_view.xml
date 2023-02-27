@@ -20,6 +20,7 @@
             </form>
         </field>
     </record>
+
     <record id="checkout_massmessage_action" model="ir.actions.act_window">
         <field name="name">Send Messages</field>
         <field name="res_model">library.checkout.massmessage</field>

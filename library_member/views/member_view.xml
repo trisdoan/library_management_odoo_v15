@@ -5,7 +5,7 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="name"/>
+                    <field name="partner_id"/>
                     <field name="email"/>
                     <field name="card_number"/>
                 </group>
